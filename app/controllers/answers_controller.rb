@@ -1,12 +1,11 @@
 class AnswersController < ApplicationController
-  before_action :load_question, only: [:create]
 
   def new
     @answer = Answer.new
   end
 
   def create
-    @answer = @question.answers.new(answer_params)
+    @answer = question.answers.new(answer_params)
 
     if @answer.save
       redirect_to @question
@@ -17,9 +16,11 @@ class AnswersController < ApplicationController
 
   private
 
-  def load_question
-    @question = Question.find(params[:question_id])
+  def question
+    @question ||= Question.find(params[:question_id])
   end
+
+  helper_method :question
 
   def answer_params
     params.require(:answer).permit(:body)
