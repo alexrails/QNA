@@ -3,6 +3,7 @@ class AnswersController < ApplicationController
 
   def create
     @answer = question.answers.new(answer_params)
+    @answer.user = current_user
 
     if @answer.save
       redirect_to @answer.question, notice: 'Your answer successfully created.'
@@ -22,8 +23,6 @@ class AnswersController < ApplicationController
   end
 
   helper_method :answer
-
-
   helper_method :question
 
   def answer_params
