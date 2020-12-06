@@ -3,8 +3,8 @@ require 'rails_helper'
 RSpec.describe AnswersController, type: :controller do
 
   let(:user) { create(:user) }
-  let(:question) { create(:question) }
-  let(:answer) { create(:answer, question: question) }
+  let(:question) { create(:question, user: user) }
+  let(:answer) { create(:answer, question: question, user: user) }
 
   before { login(user) }
 
