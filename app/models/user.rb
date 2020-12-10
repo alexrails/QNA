@@ -6,4 +6,6 @@ class User < ApplicationRecord
 
   has_many :questions
   has_many :answers
+
+  validates :email, :password, presence: true
 end
