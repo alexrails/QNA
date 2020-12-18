@@ -9,11 +9,9 @@ class QuestionsController < ApplicationController
     @answer = question.answers.new
   end
 
-  def new
-  end
+  def new; end
 
-  def edit
-  end
+  def edit; end
 
   def create
     @question = Question.new(question_params)
@@ -35,10 +33,10 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    if current_user.author_of?(question)
-      question.destroy
-      redirect_to questions_path, notice: 'Your question successfully deleted.'
-    end
+    return unless current_user.author_of?(question)
+
+    question.destroy
+    redirect_to questions_path, notice: 'Your question successfully deleted.'
   end
 
   private

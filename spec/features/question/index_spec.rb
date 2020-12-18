@@ -1,9 +1,8 @@
 require 'rails_helper'
 
-feature 'User can show list of questions', %q{
+feature 'User can show list of questions', "
   I'd like to be able show all my questions
-} do
-
+" do
   given!(:questions) { create_list(:question, 3) }
   scenario 'Show questions' do
     visit questions_path
