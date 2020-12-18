@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe AnswersController, type: :controller do
-
   let(:user) { create(:user) }
   let(:question) { create(:question, user: user) }
   let(:answer) { create(:answer, question: question, user: user) }
@@ -11,7 +10,7 @@ RSpec.describe AnswersController, type: :controller do
   describe 'POST #create' do
     context 'with valid attributes' do
       it 'saves a new answer in the database' do
-        expect{ post :create, params: { question_id: question, answer: attributes_for(:answer) } }.to change(question.answers, :count).by(1)
+        expect { post :create, params: { question_id: question, answer: attributes_for(:answer) } }.to change(question.answers, :count).by(1)
       end
 
       it 'created Answer belongs to current user' do
@@ -28,7 +27,7 @@ RSpec.describe AnswersController, type: :controller do
 
     context 'with invalid attributes' do
       it 'does not save the answer' do
-        expect{ post :create, params: { question_id: question, answer: attributes_for(:answer, :invalid) } }.to_not change(Answer, :count)
+        expect { post :create, params: { question_id: question, answer: attributes_for(:answer, :invalid) } }.to_not change(Answer, :count)
       end
 
       it 're-renders show view' do
@@ -42,10 +41,10 @@ RSpec.describe AnswersController, type: :controller do
     let!(:users) { create_list(:user, 2) }
     before { login(users.first) }
     context 'own answer' do
-      let!(:answer) { create(:answer, question: question, user: users.first)}
+      let!(:answer) { create(:answer, question: question, user: users.first) }
 
       it 'deletes the answer' do
-        expect{ delete :destroy, params: { id: answer }  }.to change(Answer, :count).by(-1)
+        expect { delete :destroy, params: { id: answer } }.to change(Answer, :count).by(-1)
       end
 
       it 'redirects to index' do
@@ -58,7 +57,7 @@ RSpec.describe AnswersController, type: :controller do
       let!(:answer) { create(:answer, question: question, user: users.last) }
 
       it 'do not delete answer' do
-        expect{ delete :destroy, params: { id: answer } }.to_not change(Answer, :count)
+        expect { delete :destroy, params: { id: answer } }.to_not change(Answer, :count)
       end
     end
   end

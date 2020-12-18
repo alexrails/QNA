@@ -1,9 +1,8 @@
 require 'rails_helper'
 
-feature 'User can sign out', %q{
+feature 'User can sign out', "
   I'd like to be able to sign out
-} do
-
+" do
   given(:user) { create(:user) }
 
   scenario 'Registered user tries to sign out' do
@@ -12,5 +11,4 @@ feature 'User can sign out', %q{
 
     expect(page).to have_content 'Signed out successfully.'
   end
-
 end

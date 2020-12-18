@@ -1,10 +1,9 @@
 require 'rails_helper'
 
-feature 'User can delete answer', %q{
+feature 'User can delete answer', '
   I want to be able
   Delete answer
-}do
-
+' do
   given(:users) { create_list(:user, 2) }
   given(:question) { create(:question, user: users.first) }
 

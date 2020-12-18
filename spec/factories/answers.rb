@@ -1,5 +1,4 @@
 FactoryBot.define do
-
   factory :answer do
     user
     sequence :body do |n|
@@ -10,5 +9,4 @@ FactoryBot.define do
   trait :invalid do
     body { nil }
   end
-
 end

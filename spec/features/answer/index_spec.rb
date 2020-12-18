@@ -1,11 +1,10 @@
 require 'rails_helper'
 
-feature 'Show all answers the question', %q{
+feature 'Show all answers the question', "
   All users can to see
   All answers the question
   On question's page
-} do
-
+" do
   given!(:user) { create(:user) }
   given!(:question) { create(:question, user: user) }
   given!(:answers) { create_list(:answer, 3, question: question, user: user) }
@@ -20,5 +19,4 @@ feature 'Show all answers the question', %q{
       expect(page).to have_content answer.body
     end
   end
-
 end

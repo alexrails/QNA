@@ -1,8 +1,7 @@
 class AnswersController < ApplicationController
   before_action :authenticate_user!
 
-  def edit
-  end
+  def edit; end
 
   def create
     @answer = question.answers.new(answer_params)
@@ -16,16 +15,14 @@ class AnswersController < ApplicationController
   end
 
   def update
-    if current_user.author_of?(answer)
-      answer.update(answer_params)
-    end
+    answer.update(answer_params) if current_user.author_of?(answer)
   end
 
   def destroy
-    if current_user.author_of?(answer)
-      answer.destroy
-      redirect_to answer.question, notice: 'Your answer successfully deleted.'
-    end
+    return unless current_user.author_of?(answer)
+
+    answer.destroy
+    redirect_to answer.question, notice: 'Your answer successfully deleted.'
   end
 
   private
