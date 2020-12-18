@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe QuestionsController, type: :controller do
-
   let(:user) { create(:user) }
   let(:question) { create(:question, user: user) }
 
@@ -51,7 +50,7 @@ RSpec.describe QuestionsController, type: :controller do
 
     context 'with valid attributes' do
       it 'saves a new question in the database' do
-        expect{ post :create, params: { question: attributes_for(:question) } }.to change(Question, :count).by(1)
+        expect { post :create, params: { question: attributes_for(:question) } }.to change(Question, :count).by(1)
       end
 
       it 'created Question belongs to current user' do
@@ -68,7 +67,7 @@ RSpec.describe QuestionsController, type: :controller do
 
     context 'with invalid attributes' do
       it 'does not save a new question' do
-        expect{ post :create, params: { question: attributes_for(:question, :invalid) } }.to_not change(Question, :count)
+        expect { post :create, params: { question: attributes_for(:question, :invalid) } }.to_not change(Question, :count)
       end
 
       it 're-renders new view' do
@@ -124,7 +123,7 @@ RSpec.describe QuestionsController, type: :controller do
       let!(:question) { create(:question, user: users.first) }
 
       it 'deletes the question' do
-        expect{ delete :destroy, params: { id: question } }.to change(Question, :count).by(-1)
+        expect { delete :destroy, params: { id: question } }.to change(Question, :count).by(-1)
       end
 
       it 'redirects to index' do
@@ -137,7 +136,7 @@ RSpec.describe QuestionsController, type: :controller do
       let!(:question) { create(:question, user: users.last) }
 
       it 'do not delete question' do
-        expect{ delete :destroy, params: { id: question } }.to_not change(Question, :count)
+        expect { delete :destroy, params: { id: question } }.to_not change(Question, :count)
       end
     end
   end
