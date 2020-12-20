@@ -39,3 +39,6 @@ yarn-debug.log*
 #RuboCop
 .rubocop.yml
 .rubocop_todo.yml
+
+#Environment variables
+.env
