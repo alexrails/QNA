@@ -1,0 +1,16 @@
+require: rubocop-performance
+require: rubocop-rails
+
+inherit_from: .rubocop_todo.yml
+
+AllCops:
+  DisplayCopNames: true
+  TargetRubyVersion: 2.6.6
+
+  Exclude:
+    - 'db/**/*'
+    - 'node_modules/**/*'
+    - 'spec/**/*'
+
+Style/Documentation:
+  Enabled: false
