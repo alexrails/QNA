@@ -14,9 +14,8 @@ jobs:
 
     services:
       postgres:
-        image: postgres:10.15
-        ports:
-          - 5432:5432
+        image: postgres:latest
+        ports: ['5432:5432']
         env:
           POSTGRES_USER: ${{ env.USER }}
           POSTGRES_PASSWORD: ${{ env.PASSWORD }}
@@ -53,7 +52,8 @@ jobs:
       - name: Create database
         env:
           RAILS_ENV: test
-        run: bundler exec rails db:create db:migrate
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+        run: bundler exec rails db:prepare
 
       - name: Rubocop
         run: bundle exec rubocop
