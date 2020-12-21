@@ -33,6 +33,9 @@ jobs:
           ruby-version: ${{ env.RUBY_VERSION }}
           bundler-cache: true
 
+      - name: Install postgres client
+        run: sudo apt-get install libpq-dev
+
       - name: Setup Node
         uses: actions/setup-node@v1
         with:
@@ -50,9 +53,6 @@ jobs:
       - name: Install packages
         run: |
           yarn install --pure-lockfile
-
-      - name: Install postgres client
-        run: sudo apt-get install libpq-dev
 
       - name: Create database
         env:
