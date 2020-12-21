@@ -2,7 +2,6 @@ env:
   RUBY_VERSION: 2.6.3
   POSTGRES_USER: postgres
   POSTGRES_PASSWORD: postgres
-  POSTGRES_DB: th_qna_test
 
 name: Rails tests
 on: [push, pull_request]
@@ -58,7 +57,7 @@ jobs:
       - name: Create database
         env:
           RAILS_ENV: test
-        run: bundler exec rails db:prepare
+        run: bundler exec rails db:create db:migrate
 
       - name: Rubocop
         run: bundle exec rubocop
