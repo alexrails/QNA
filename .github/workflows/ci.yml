@@ -2,6 +2,8 @@ env:
   RUBY_VERSION: 2.6.3
   POSTGRES_USER: postgres
   POSTGRES_PASSWORD: postgres
+  POSTGRES_DB: th_qna_test
+
 
 name: Rails tests
 on: [push, pull_request]
@@ -30,11 +32,8 @@ jobs:
 
       - uses: ruby/setup-ruby@v1
         with:
-          ruby-version: ${{ env.RUBY_VERSION }}
+          ruby-version: 2.6.3
           bundler-cache: true
-
-      - name: Install postgres client
-        run: sudo apt-get install libpq-dev
 
       - name: Setup Node
         uses: actions/setup-node@v1
@@ -53,6 +52,9 @@ jobs:
       - name: Install packages
         run: |
           yarn install --pure-lockfile
+
+      - name: Install postgres client
+        run: sudo apt-get install libpq-dev
 
       - name: Create database
         env:
