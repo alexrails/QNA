@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe QuestionsController, type: :controller do
+
   let(:user) { create(:user) }
   let(:question) { create(:question, user: user) }
 
@@ -27,7 +28,6 @@ RSpec.describe QuestionsController, type: :controller do
 
   describe 'GET #new' do
     before { login(user) }
-
     before { get :new }
 
     it 'renders new view' do
@@ -37,7 +37,6 @@ RSpec.describe QuestionsController, type: :controller do
 
   describe 'GET #edit' do
     before { login(user) }
-
     before { get :edit, params: { id: question } }
 
     it 'renders edit view' do
@@ -57,6 +56,7 @@ RSpec.describe QuestionsController, type: :controller do
         post :create, params: { question: attributes_for(:question) }
 
         expect(assigns(:question).user).to eq user
+
       end
 
       it 'redirect to show view' do
@@ -79,7 +79,7 @@ RSpec.describe QuestionsController, type: :controller do
 
   describe 'PATCH #update' do
     before { login(user) }
-
+    
     context 'with valid attributes' do
       it 'assigns the request question to question' do
         patch :update, params: { id: question, question: attributes_for(:question) }
@@ -105,7 +105,7 @@ RSpec.describe QuestionsController, type: :controller do
 
       it 'does not change question' do
         question.reload
-
+        
         expect(question.title).to match(/Title\d/)
         expect(question.body).to match(/Body\d/)
       end

@@ -1,4 +1,5 @@
 class AnswersController < ApplicationController
+
   before_action :authenticate_user!
 
   def edit; end
@@ -25,7 +26,7 @@ class AnswersController < ApplicationController
     redirect_to answer.question, notice: 'Your answer successfully deleted.'
   end
 
-  private
+   private
 
   def question
     @question ||= Question.find(params[:question_id])
