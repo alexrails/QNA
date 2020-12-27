@@ -35,7 +35,6 @@ class AnswersController < ApplicationController
     @answer ||= params[:id] ? Answer.find(params[:id]) : question.answers.new
   end
 
-  helper_method :answer
   helper_method :question
 
   def answer_params

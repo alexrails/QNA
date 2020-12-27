@@ -1,6 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe AnswersController, type: :controller do
+
   let(:user) { create(:user) }
   let(:question) { create(:question, user: user) }
   let(:answer) { create(:answer, question: question, user: user) }
@@ -10,6 +11,7 @@ RSpec.describe AnswersController, type: :controller do
   describe 'POST #create' do
     context 'with valid attributes' do
       it 'saves a new answer in the database' do
+
         expect { post :create, params: { question_id: question, answer: attributes_for(:answer) } }.to change(question.answers, :count).by(1)
       end
 

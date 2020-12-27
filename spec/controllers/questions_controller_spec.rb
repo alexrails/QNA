@@ -27,7 +27,6 @@ RSpec.describe QuestionsController, type: :controller do
 
   describe 'GET #new' do
     before { login(user) }
-
     before { get :new }
 
     it 'renders new view' do
@@ -37,7 +36,6 @@ RSpec.describe QuestionsController, type: :controller do
 
   describe 'GET #edit' do
     before { login(user) }
-
     before { get :edit, params: { id: question } }
 
     it 'renders edit view' do
