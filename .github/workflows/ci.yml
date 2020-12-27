@@ -5,7 +5,7 @@ env:
   POSTGRES_DB: th_qna_test
 
 name: Rails tests
-on: [push, pull_request]
+on: [pull_request]
 
 jobs:
   test:
